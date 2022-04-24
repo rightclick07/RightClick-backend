@@ -1,5 +1,6 @@
 package com.rightclick.backend.service;
 
+import com.rightclick.backend.Entity.UserEntity;
 import com.rightclick.backend.Repository.UsersRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.User;
@@ -14,10 +15,12 @@ import java.util.ArrayList;
 public class CustomUserDetailsService implements UserDetailsService {
     @Autowired
     private UsersRepository usersRepository;
+
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        if(username.equals("ravi")){
-            return new User("ravi","password",new ArrayList<>());
+        UserEntity user= usersRepository.findByUserName(username);
+        if(username.equals(user.getUserName())){
+            return new User(user.getUserName(),user.getPassword(),new ArrayList<>());
         }else{
             throw new UsernameNotFoundException("user not found");
         }
