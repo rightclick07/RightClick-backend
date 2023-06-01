@@ -1,101 +1,85 @@
 package com.rightclick.backend.Entity;
 
+
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+import com.rightclick.backend.model.Role;
+
 import javax.persistence.*;
 import java.math.BigInteger;
+import java.sql.Timestamp;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
-@Table(name = "user_details")
+
+@Table(name = "accounts")
+@JsonIdentityInfo(
+        property = "user_id",
+        generator = ObjectIdGenerators.PropertyGenerator.class
+)
 public class UserEntity {
+
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "user_id", nullable = false)
-    Integer userId;
+    private BigInteger userId;
 
-    @Column(name = "first_name", nullable = false)
-    String firstName;
+    @Column(name = "username", nullable = false)
+    private String username;
 
-    @Column(name = "middle_name", nullable = false)
-    String middleName;
+    @Column(name = "email", nullable = false)
+    private String email;
 
-    @Column(name = "last_name", nullable = false)
-    String lastName;
+    @Column(name = "password", nullable = false)
+    private String password;
 
-    @Column(name = "user_name", nullable = false)
-    String userName;
+    @Column(name = "full_name", nullable = false)
+    private String fullName;
 
-    @Column(name = "email_id", nullable = false)
-    String emailId;
-
-    @Column(name = "user_password", nullable = false)
-    String password;
-
-    @Column(name = "user_roles_id", nullable = false)
-    Integer userRolesId;
+    @Column(name = "address", nullable = false)
+    private String address;
 
     @Column(name = "mobile_number", nullable = false)
-    BigInteger mobileNumber;
+    private String mobileNumber;
 
-    public UserEntity() {
-    }
+    @ManyToMany(fetch = FetchType.LAZY)
+    @JoinTable(	name = "user_roles",
+            joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "role_id"))
+    private Set<Role> roles = new HashSet<>();
 
-    public UserEntity(Integer userId, String firstName, String middleName, String lastName, String userName, String emailId, String password, Integer userRolesId, BigInteger mobileNumber) {
-        this.userId = userId;
-        this.firstName = firstName;
-        this.middleName = middleName;
-        this.lastName = lastName;
-        this.userName = userName;
-        this.emailId = emailId;
-        this.password = password;
-        this.userRolesId = userRolesId;
-        this.mobileNumber = mobileNumber;
-    }
+    @Column(name = "is_active", nullable = false)
+    private Boolean isActive;
 
-    public Integer getUserId() {
+    @Column(name = "created_at", nullable = false)
+    private Timestamp createdAt;
+
+    @Column(name = "updated_at", nullable = false)
+    private Timestamp updatedAt;
+
+    public BigInteger getUserId() {
         return userId;
     }
 
-    public void setUserId(Integer userId) {
+    public void setUserId(BigInteger userId) {
         this.userId = userId;
     }
 
-    public String getFirstName() {
-        return firstName;
+    public String getUsername() {
+        return username;
     }
 
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
-    public String getMiddleName() {
-        return middleName;
+    public String getEmail() {
+        return email;
     }
 
-    public void setMiddleName(String middleName) {
-        this.middleName = middleName;
-    }
-
-    public String getLastName() {
-        return lastName;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
-    }
-
-    public String getUserName() {
-        return userName;
-    }
-
-    public void setUserName(String userName) {
-        this.userName = userName;
-    }
-
-    public String getEmailId() {
-        return emailId;
-    }
-
-    public void setEmailId(String emailId) {
-        this.emailId = emailId;
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public String getPassword() {
@@ -106,34 +90,59 @@ public class UserEntity {
         this.password = password;
     }
 
-    public Integer getUserRolesId() {
-        return userRolesId;
+    public String getFullName() {
+        return fullName;
     }
 
-    public void setUserRolesId(Integer userRolesId) {
-        this.userRolesId = userRolesId;
+    public void setFullName(String fullName) {
+        this.fullName = fullName;
     }
 
-    public BigInteger getMobileNumber() {
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public String getMobileNumber() {
         return mobileNumber;
     }
 
-    public void setMobileNumber(BigInteger mobileNumber) {
+    public void setMobileNumber(String mobileNumber) {
         this.mobileNumber = mobileNumber;
     }
 
-    @Override
-    public String toString() {
-        return "UserEntity{" +
-                "userId=" + userId +
-                ", firstName='" + firstName + '\'' +
-                ", middleName='" + middleName + '\'' +
-                ", lastName='" + lastName + '\'' +
-                ", userName='" + userName + '\'' +
-                ", emailId='" + emailId + '\'' +
-                ", password='" + password + '\'' +
-                ", userRolesId=" + userRolesId +
-                ", mobileNumber=" + mobileNumber +
-                '}';
+    public Set<Role> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(Set<Role> roles) {
+        this.roles = roles;
+    }
+
+    public Boolean getActive() {
+        return isActive;
+    }
+
+    public void setActive(Boolean active) {
+        isActive = active;
+    }
+
+    public Timestamp getCreatedAt() {
+        return createdAt;
+    }
+
+    public void setCreatedAt(Timestamp createdAt) {
+        this.createdAt = createdAt;
+    }
+
+    public Timestamp getUpdatedAt() {
+        return updatedAt;
+    }
+
+    public void setUpdatedAt(Timestamp updatedAt) {
+        this.updatedAt = updatedAt;
     }
 }

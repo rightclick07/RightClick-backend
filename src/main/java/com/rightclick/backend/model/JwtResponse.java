@@ -1,27 +1,24 @@
 package com.rightclick.backend.model;
 
-public class JwtResponse {
-    String token;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.Setter;
 
-    public JwtResponse() {
+import java.util.List;
+    @Getter
+    @Setter
+    @AllArgsConstructor
+    public class JwtResponse {
+
+        private String token;
+        private final String type = "Bearer";
+        private Long id;
+        private String username;
+        private String email;
+        private String password;
+        private List<String> roles;
+
+        public JwtResponse() {
+        }
     }
 
-    public JwtResponse(String token) {
-        this.token = token;
-    }
-
-    public String getToken() {
-        return token;
-    }
-
-    public void setToken(String token) {
-        this.token = token;
-    }
-
-    @Override
-    public String toString() {
-        return "JwtResponse{" +
-                "token='" + token + '\'' +
-                '}';
-    }
-}
