@@ -6,6 +6,7 @@ import com.rightclick.backend.service.services.ProductService;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
@@ -13,15 +14,16 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 import java.util.Optional;
 
+@CrossOrigin(origins = "*")
 @RestController
 public class ProductController {
-
     @Autowired
     ProductService productService;
 
     private static final Logger log= LogManager.getLogger(ProductController.class);
 
-    @GetMapping("/getALLProductList")
+
+    @GetMapping("/getAllProductList")
     public ResponseDTO<List<ProductsEntity>> getProductList(){
         log.info("Starting Controller for method {getProductList}");
         return productService.getAllProductListData();

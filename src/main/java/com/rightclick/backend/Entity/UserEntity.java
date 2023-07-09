@@ -15,15 +15,15 @@ import java.util.Set;
 
 @Table(name = "accounts")
 @JsonIdentityInfo(
-        property = "user_id",
+        property = "id",
         generator = ObjectIdGenerators.PropertyGenerator.class
 )
 public class UserEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "user_id", nullable = false)
-    private BigInteger userId;
+    @Column(name = "id", nullable = false)
+    private Integer id;
 
     @Column(name = "username", nullable = false)
     private String username;
@@ -43,11 +43,8 @@ public class UserEntity {
     @Column(name = "mobile_number", nullable = false)
     private String mobileNumber;
 
-    @ManyToMany(fetch = FetchType.LAZY)
-    @JoinTable(	name = "user_roles",
-            joinColumns = @JoinColumn(name = "user_id"),
-            inverseJoinColumns = @JoinColumn(name = "role_id"))
-    private Set<Role> roles = new HashSet<>();
+    @Column(name = "role",nullable = false)
+    private String role;
 
     @Column(name = "is_active", nullable = false)
     private Boolean isActive;
@@ -58,12 +55,20 @@ public class UserEntity {
     @Column(name = "updated_at", nullable = false)
     private Timestamp updatedAt;
 
-    public BigInteger getUserId() {
-        return userId;
+    public Integer getId() {
+        return id;
     }
 
-    public void setUserId(BigInteger userId) {
-        this.userId = userId;
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public String getRole() {
+        return role;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
     }
 
     public String getUsername() {
@@ -114,13 +119,6 @@ public class UserEntity {
         this.mobileNumber = mobileNumber;
     }
 
-    public Set<Role> getRoles() {
-        return roles;
-    }
-
-    public void setRoles(Set<Role> roles) {
-        this.roles = roles;
-    }
 
     public Boolean getActive() {
         return isActive;

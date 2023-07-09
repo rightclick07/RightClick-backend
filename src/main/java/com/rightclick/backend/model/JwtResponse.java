@@ -4,21 +4,25 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.HashSet;
 import java.util.List;
-    @Getter
+import java.util.Set;
+
+@Getter
     @Setter
     @AllArgsConstructor
     public class JwtResponse {
 
         private String token;
         private final String type = "Bearer";
-        private Long id;
+        private Integer id;
         private String username;
         private String email;
         private String password;
-        private List<String> roles;
+        private String role;
 
         public JwtResponse() {
         }
+
     }
 

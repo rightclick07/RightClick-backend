@@ -22,6 +22,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.sql.Timestamp;
+import java.util.*;
 
 @Service
 public class JwtServiceImpl  implements JwtService {
@@ -60,8 +61,16 @@ public class JwtServiceImpl  implements JwtService {
                     (jwtRequest.getUsername(),jwtRequest.getPassword()));
             UserDetails userDetails=this.customUserDetailsService.loadUserByUsername(jwtRequest.getUsername());
             String token=this.jwtUtil.generateToken(userDetails);
+
+            UserEntity userEntity =usersRepository.findByUsername(jwtRequest.getUsername());
             JwtResponse jwtResponse=new JwtResponse();
+
+            jwtResponse.setId(userEntity.getId());
             jwtResponse.setToken(token);
+            jwtResponse.setUsername(userEntity.getUsername());
+            jwtResponse.setEmail(userEntity.getEmail());
+            jwtResponse.setRole(userEntity.getRole());
+
             responseDTO.setHttpStatusCode(HttpStatus.OK);
             responseDTO.setMessage(appConstants.successMsg);
             responseDTO.setPayload(jwtResponse);
@@ -102,6 +111,7 @@ public class JwtServiceImpl  implements JwtService {
                 userEntity.setPassword(hashedPassword!=null?hashedPassword:"");
                 userEntity.setAddress(signupRequest.getAddress()!=null?signupRequest.getAddress():"");
                 userEntity.setMobileNumber(signupRequest.getMobileNumber()!=null?signupRequest.getMobileNumber():"");
+                userEntity.setRole("customer");
                 userEntity.setActive(signupRequest.getActive() != null ? signupRequest.getActive() : true);
                 userEntity.setCreatedAt(signupRequest.getCreatedAt()!=null?signupRequest.getCreatedAt():  new Timestamp(System.currentTimeMillis()));
                 userEntity.setUpdatedAt(signupRequest.getUpdatedAt()!=null?signupRequest.getUpdatedAt():new Timestamp(System.currentTimeMillis()));

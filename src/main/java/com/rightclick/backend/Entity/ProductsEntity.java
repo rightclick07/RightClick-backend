@@ -31,6 +31,9 @@ public class ProductsEntity {
     @Column(name = "compare_at_price")
     private BigDecimal compareAtPrice;
 
+    @Column(name = "discount")
+    private Integer discount;
+
     @Column(name = "description")
     private String description;
 
@@ -54,6 +57,9 @@ public class ProductsEntity {
 
     @Column(name = "images")
     private String images;
+
+    @Column(name = "quantity")
+    private Integer quantity;
 
     public String getImages() {
         return images;
@@ -165,5 +171,21 @@ public class ProductsEntity {
 
     public void setVariants(String variants) {
         this.variants = variants;
+    }
+
+    public Integer getDiscount() {
+        return discount;
+    }
+
+    public void setDiscount(Integer discount) {
+        this.discount = discount;
+    }
+
+    public Integer getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(Integer quantity) {
+        this.quantity = quantity;
     }
 }
