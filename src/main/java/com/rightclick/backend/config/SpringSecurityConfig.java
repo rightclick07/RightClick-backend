@@ -31,7 +31,11 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
                 .cors()
                 .disable()
                 .authorizeRequests()
-                .antMatchers("/api/auth/login","/api/auth/signup","/upload","/getAllProductList","/getProductById/{id}","/saveAddress","/getAddress/{id}").permitAll()
+                .antMatchers("/api/auth/login","/api/auth/signup",
+                        "/upload","/getAllProductList",
+                        "/getProductById/{id}","/saveAddress",
+                        "/getAddress/{id}","/saveOrder",
+                        "/saveOrderItems","/getOrder/{id}").permitAll()
                 .anyRequest().authenticated()
                 .and()
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
