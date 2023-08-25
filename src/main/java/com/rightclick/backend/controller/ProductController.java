@@ -6,10 +6,7 @@ import com.rightclick.backend.service.services.ProductService;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Optional;
@@ -35,4 +32,11 @@ public class ProductController {
         return productService.getProductById(id);
     }
 
+    @GetMapping("/getProductsByCategoryAndSubCategory")
+    public ResponseDTO<List<ProductsEntity>> getProductsByCategoryAndSubcategory(
+            @RequestParam(required = false) String productType,
+            @RequestParam(required = false) String category) {
+        log.info("Starting Controller for method {getProductsByCategoryAndSubcategory} for Category & subcategory :" ,category,productType);
+        return productService.getAllProductByCategoryAndSubcategory(productType,category);
+    }
 }

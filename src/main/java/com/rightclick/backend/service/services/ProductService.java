@@ -9,5 +9,6 @@ import java.util.Optional;
 public interface ProductService {
 
     ResponseDTO<List<ProductsEntity>> getAllProductListData();
+    ResponseDTO<List<ProductsEntity>> getAllProductByCategoryAndSubcategory(String category,String subcategory);
     ResponseDTO<Optional<ProductsEntity>> getProductById(Integer id);
 }

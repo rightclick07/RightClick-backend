@@ -13,6 +13,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -37,6 +38,32 @@ public class ProductServiceImpl implements ProductService {
             listResponseDTO.setMessage(appConstants.successMsg);
             listResponseDTO.setPayload(productsEntityList);
 
+        } catch (UsernameNotFoundException e){
+            e.printStackTrace();
+            listResponseDTO.setHttpStatusCode(HttpStatus.INTERNAL_SERVER_ERROR);
+            listResponseDTO.setMessage(appConstants.bad_credential);
+            listResponseDTO.setPayload(null);
+        }
+        return listResponseDTO;
+    }
+
+    @Override
+    public ResponseDTO<List<ProductsEntity>> getAllProductByCategoryAndSubcategory(String productType, String category) {
+        log.info("Starting Service for method {getAllProductByCategoryAndSubcategory} for productType & category: ",category,productType);
+        ResponseDTO<List<ProductsEntity>> listResponseDTO  =new ResponseDTO<>();
+        List<ProductsEntity> productsEntityList=new ArrayList<>();
+        try{
+            if (category != null && productType != null) {
+                productsEntityList=productRepository.findByProductTypeAndCategory(productType, category);
+            } else if (productType != null) {
+                productsEntityList=productRepository.findByProductType(productType);
+            } else {
+                productsEntityList=productRepository.findAll();
+            }
+
+            listResponseDTO.setHttpStatusCode(HttpStatus.OK);
+            listResponseDTO.setMessage(appConstants.successMsg);
+            listResponseDTO.setPayload(productsEntityList);
         } catch (UsernameNotFoundException e){
             e.printStackTrace();
             listResponseDTO.setHttpStatusCode(HttpStatus.INTERNAL_SERVER_ERROR);

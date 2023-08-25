@@ -4,7 +4,7 @@ import java.math.BigDecimal;
 import java.util.Date;
 
 public class OrderItemsRequest {
-
+    private Integer orderItemsId;
     private Integer orderId;
     private  Integer productId;
     private  Integer quantity;
@@ -14,6 +14,14 @@ public class OrderItemsRequest {
     private BigDecimal tax;
     private BigDecimal total;
     private Date createdAt;
+
+    public Integer getOrderItemsId() {
+        return orderItemsId;
+    }
+
+    public void setOrderItemsId(Integer orderItemsId) {
+        this.orderItemsId = orderItemsId;
+    }
 
     public Integer getOrderId() {
         return orderId;

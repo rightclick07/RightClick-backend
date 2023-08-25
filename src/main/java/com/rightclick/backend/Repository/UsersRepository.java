@@ -9,11 +9,12 @@ import java.math.BigInteger;
 import java.util.Optional;
 
 @Repository
-public interface UsersRepository extends JpaRepository<UserEntity, BigInteger> {
+public interface UsersRepository extends JpaRepository<UserEntity, Integer> {
 
 
  boolean existsByUsername(String name);
 
  UserEntity findByUsername(String username);
+
 
 }
