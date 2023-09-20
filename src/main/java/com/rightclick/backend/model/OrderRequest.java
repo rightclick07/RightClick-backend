@@ -5,7 +5,7 @@ import java.util.Date;
 import java.util.List;
 
 public class OrderRequest {
-    private Integer orderId;
+    private Integer id;
     private Integer customerId;
     private Date orderDate ;
     private BigDecimal totalAmount;
@@ -15,13 +15,7 @@ public class OrderRequest {
     private Date deliveryDate;
     private  String trackingNumber;
 
-    public Integer getOrderId() {
-        return orderId;
-    }
 
-    public void setOrderId(Integer orderId) {
-        this.orderId = orderId;
-    }
 
     public Integer getCustomerId() {
         return customerId;
@@ -29,6 +23,14 @@ public class OrderRequest {
 
     public void setCustomerId(Integer customerId) {
         this.customerId = customerId;
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     public Date getOrderDate() {

@@ -108,6 +108,7 @@ public class OrdersServiceImpl implements OrdersService {
                     OrderItemsEntity orderItemsEntity=new OrderItemsEntity();
                     orderItemsEntity.setOrderId(element.getOrderId()!=null?element.getOrderId():0);
                     orderItemsEntity.setProductId(element.getProductId()!=null?element.getProductId():0);
+                    orderItemsEntity.setProductName(element.getProductName()!=null?element.getProductName():"");
                     orderItemsEntity.setCreatedAt(element.getCreatedAt()!=null?element.getCreatedAt():new Date());
                     orderItemsEntity.setDiscount(element.getDiscount()!=null?element.getDiscount(): BigDecimal.valueOf(0.0));
                     orderItemsEntity.setQuantity(element.getQuantity()!=null?element.getQuantity():0);

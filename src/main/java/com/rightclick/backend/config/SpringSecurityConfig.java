@@ -39,7 +39,8 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
                         "/getProductsByCategoryAndSubCategory",
                         "/getUser/{userId}","/getAllOrdersByUser/{userId}",
                         "/sendMail","/getAllBlogs",
-                        "/getBlogById/{id}").permitAll()
+                        "/getBlogById/{id}","/getOrderItems/{id}",
+                        "/api/payment").permitAll()
                 .anyRequest().authenticated()
                 .and()
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);

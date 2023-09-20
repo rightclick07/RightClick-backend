@@ -52,7 +52,7 @@ public class EmailServiceImpl implements EmailService {
             // Load and process the HTML template using Thymeleaf
             Context context = new Context();
             context.setVariable("customerName", emailRequest.getCustomerName());
-            context.setVariable("orderId", emailRequest.getOrderRequest().getOrderId());
+            context.setVariable("orderId", emailRequest.getOrderRequest().getId());
             context.setVariable("customerId", emailRequest.getOrderRequest().getCustomerId());
             context.setVariable("orderDate", emailRequest.getOrderRequest().getOrderDate());
             context.setVariable("totalAmount", emailRequest.getOrderRequest().getTotalAmount());

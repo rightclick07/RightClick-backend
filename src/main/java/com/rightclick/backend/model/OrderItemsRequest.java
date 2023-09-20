@@ -4,9 +4,10 @@ import java.math.BigDecimal;
 import java.util.Date;
 
 public class OrderItemsRequest {
-    private Integer orderItemsId;
+    private Integer id;
     private Integer orderId;
     private  Integer productId;
+    private  String productName;
     private  Integer quantity;
     private BigDecimal unitPrice;
     private BigDecimal discount;
@@ -15,19 +16,19 @@ public class OrderItemsRequest {
     private BigDecimal total;
     private Date createdAt;
 
-    public Integer getOrderItemsId() {
-        return orderItemsId;
+    public Integer getId() {
+        return id;
     }
 
-    public void setOrderItemsId(Integer orderItemsId) {
-        this.orderItemsId = orderItemsId;
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     public Integer getOrderId() {
         return orderId;
     }
 
-    public void setOrder_id(Integer order_id) {
+    public void setOrderId(Integer orderId) {
         this.orderId = orderId;
     }
 
@@ -37,6 +38,14 @@ public class OrderItemsRequest {
 
     public void setProductId(Integer productId) {
         this.productId = productId;
+    }
+
+    public String getProductName() {
+        return productName;
+    }
+
+    public void setProductName(String productName) {
+        this.productName = productName;
     }
 
     public Integer getQuantity() {

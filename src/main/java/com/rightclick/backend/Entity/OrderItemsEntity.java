@@ -28,6 +28,9 @@ public class OrderItemsEntity {
     @Column(name = "product_id", nullable = false)
     private Integer productId;
 
+    @Column(name = "product_name", nullable = false)
+    private String productName;
+
     @Column(name = "quantity", nullable = false)
     private Integer quantity;
 
@@ -48,6 +51,14 @@ public class OrderItemsEntity {
 
     @Column(name = "created_at", nullable = false)
     private Date createdAt;
+
+    public String getProductName() {
+        return productName;
+    }
+
+    public void setProductName(String productName) {
+        this.productName = productName;
+    }
 
     public Integer getId() {
         return id;

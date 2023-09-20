@@ -50,15 +50,17 @@
         <th>Item Id</th>
         <th>Order Id</th>
         <th>Product Id</th>
+        <th>Product Name</th>
         <th>Quantity</th>
         <th>Unit Price</th>
         <th>SubTotal</th>
         <th>Total</th>
     </tr>
     <tr th:each="item : ${orderItems}">
-        <td th:text="${item.orderItemsId}"></td>
+        <td th:text="${item.id}"></td>
         <td th:text="${item.orderId}"></td>
         <td th:text="${item.productId}"></td>
+        <td th:text="${item.productName}"></td>
         <td th:text="${item.quantity}"></td>
         <td th:text="${item.unitPrice}"></td>
         <td th:text="${item.subtotal}"></td>
