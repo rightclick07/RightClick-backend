@@ -74,7 +74,11 @@
 			<groupId>org.projectlombok</groupId>
 			<artifactId>lombok</artifactId>
 		</dependency>
-
+		<dependency>
+			<groupId>com.phonepe</groupId>
+			<artifactId>pg-sdk-java</artifactId>
+			<version>1.0.1</version>
+		</dependency>
 	</dependencies>
 
 	<build>
@@ -85,5 +89,16 @@
 			</plugin>
 		</plugins>
 	</build>
+	<repositories>
+		<!-- Your existing repositories -->
+
+		<repository>
+			<id>io.cloudrepo</id>
+			<name>PhonePe JAVA SDK</name>
+			<url>https://phonepe.mycloudrepo.io/public/repositories/phonepe-pg-sdk-java</url>
+		</repository>
+
+		<!-- Your existing repositories -->
+	</repositories>
 
 </project>

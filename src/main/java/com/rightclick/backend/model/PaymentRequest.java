@@ -10,7 +10,7 @@ public class PaymentRequest implements Serializable {
 
     private String merchantUserId;
 
-    private Long amount;
+    private Integer amount;
 
     private String redirectUrl;
 
@@ -46,11 +46,11 @@ public class PaymentRequest implements Serializable {
         this.merchantUserId = merchantUserId;
     }
 
-    public Long getAmount() {
+    public Integer getAmount() {
         return amount;
     }
 
-    public void setAmount(Long amount) {
+    public void setAmount(Integer amount) {
         this.amount = amount;
     }
 
@@ -92,5 +92,35 @@ public class PaymentRequest implements Serializable {
 
     public void setPaymentInstrument(PaymentInstrument paymentInstrument) {
         this.paymentInstrument = paymentInstrument;
+    }
+
+    public PaymentRequest(String merchantId, String merchantTransactionId, String merchantUserId, Integer amount, String redirectUrl, String redirectMode, String callbackUrl, String mobileNumber, PaymentInstrument paymentInstrument) {
+        this.merchantId = merchantId;
+        this.merchantTransactionId = merchantTransactionId;
+        this.merchantUserId = merchantUserId;
+        this.amount = amount;
+        this.redirectUrl = redirectUrl;
+        this.redirectMode = redirectMode;
+        this.callbackUrl = callbackUrl;
+        this.mobileNumber = mobileNumber;
+        this.paymentInstrument = paymentInstrument;
+    }
+
+    public PaymentRequest() {
+    }
+
+    @Override
+    public String toString() {
+        return "PaymentRequest{" +
+                "merchantId='" + merchantId + '\'' +
+                ", merchantTransactionId='" + merchantTransactionId + '\'' +
+                ", merchantUserId='" + merchantUserId + '\'' +
+                ", amount=" + amount +
+                ", redirectUrl='" + redirectUrl + '\'' +
+                ", redirectMode='" + redirectMode + '\'' +
+                ", callbackUrl='" + callbackUrl + '\'' +
+                ", mobileNumber='" + mobileNumber + '\'' +
+                ", paymentInstrument=" + paymentInstrument +
+                '}';
     }
 }

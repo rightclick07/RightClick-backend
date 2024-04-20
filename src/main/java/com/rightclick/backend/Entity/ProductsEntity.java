@@ -61,6 +61,12 @@ public class ProductsEntity {
     @Column(name = "quantity")
     private Integer quantity;
 
+    @Column(name = "series")
+    private String series;
+
+    @Column(name = "tags")
+    private String tags;
+
     public String getImages() {
         return images;
     }
@@ -187,5 +193,21 @@ public class ProductsEntity {
 
     public void setQuantity(Integer quantity) {
         this.quantity = quantity;
+    }
+
+    public String getSeries() {
+        return series;
+    }
+
+    public void setSeries(String series) {
+        this.series = series;
+    }
+
+    public String getTags() {
+        return tags;
+    }
+
+    public void setTags(String tags) {
+        this.tags = tags;
     }
 }
