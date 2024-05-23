@@ -35,10 +35,10 @@ public class BlogServiceImpl  implements BlogService {
             listResponseDTO.setHttpStatusCode(HttpStatus.OK);
             listResponseDTO.setMessage(appConstants.successMsg);
             listResponseDTO.setPayload(blogEntityList);
-        } catch (UsernameNotFoundException e) {
+        } catch (Exception e){
             e.printStackTrace();
             listResponseDTO.setHttpStatusCode(HttpStatus.INTERNAL_SERVER_ERROR);
-            listResponseDTO.setMessage(appConstants.bad_credential);
+            listResponseDTO.setMessage(appConstants.failureMsg);
             listResponseDTO.setPayload(null);
         }
         return listResponseDTO;

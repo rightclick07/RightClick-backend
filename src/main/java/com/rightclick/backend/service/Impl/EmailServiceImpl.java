@@ -74,10 +74,10 @@ public class EmailServiceImpl implements EmailService {
             responseDTO.setHttpStatusCode(HttpStatus.OK);
             responseDTO.setMessage(appConstants.successMsg);
             responseDTO.setPayload("Mail Sent Successfully");
-        } catch (UsernameNotFoundException e) {
+        } catch (Exception e){
             e.printStackTrace();
             responseDTO.setHttpStatusCode(HttpStatus.INTERNAL_SERVER_ERROR);
-            responseDTO.setMessage(appConstants.bad_credential);
+            responseDTO.setMessage(appConstants.failureMsg);
             responseDTO.setPayload(null);
         }
         return responseDTO;

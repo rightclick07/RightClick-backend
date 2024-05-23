@@ -13,6 +13,8 @@ import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.password.NoOpPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import org.springframework.web.servlet.config.annotation.CorsRegistry;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 @Configuration
 @EnableWebSecurity
@@ -40,7 +42,7 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
                         "/getUser/{userId}","/getAllOrdersByUser/{userId}",
                         "/sendMail","/getAllBlogs",
                         "/getBlogById/{id}","/getOrderItems/{id}",
-                        "/api/payment","/process-payment").permitAll()
+                        "/api/payment","/process-payment","/sendMessage").permitAll()
                 .anyRequest().authenticated()
                 .and()
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
@@ -62,4 +64,5 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
     public AuthenticationManager authenticationManagerBean() throws Exception {
         return super.authenticationManagerBean();
     }
+
 }

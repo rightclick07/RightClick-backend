@@ -38,10 +38,10 @@ public class ProductServiceImpl implements ProductService {
             listResponseDTO.setMessage(appConstants.successMsg);
             listResponseDTO.setPayload(productsEntityList);
 
-        } catch (UsernameNotFoundException e){
+        } catch (Exception e){
             e.printStackTrace();
             listResponseDTO.setHttpStatusCode(HttpStatus.INTERNAL_SERVER_ERROR);
-            listResponseDTO.setMessage(appConstants.bad_credential);
+            listResponseDTO.setMessage(appConstants.failureMsg);
             listResponseDTO.setPayload(null);
         }
         return listResponseDTO;
@@ -64,10 +64,10 @@ public class ProductServiceImpl implements ProductService {
             listResponseDTO.setHttpStatusCode(HttpStatus.OK);
             listResponseDTO.setMessage(appConstants.successMsg);
             listResponseDTO.setPayload(productsEntityList);
-        } catch (UsernameNotFoundException e){
+        } catch (Exception e){
             e.printStackTrace();
             listResponseDTO.setHttpStatusCode(HttpStatus.INTERNAL_SERVER_ERROR);
-            listResponseDTO.setMessage(appConstants.bad_credential);
+            listResponseDTO.setMessage(appConstants.failureMsg);
             listResponseDTO.setPayload(null);
         }
         return listResponseDTO;
@@ -84,10 +84,10 @@ public class ProductServiceImpl implements ProductService {
             responseDTO.setMessage(appConstants.successMsg);
             responseDTO.setPayload(productsEntity);
 
-        } catch (UsernameNotFoundException e){
+        } catch (Exception e){
             e.printStackTrace();
             responseDTO.setHttpStatusCode(HttpStatus.INTERNAL_SERVER_ERROR);
-            responseDTO.setMessage(appConstants.bad_credential);
+            responseDTO.setMessage(appConstants.failureMsg);
             responseDTO.setPayload(null);
         }
         return responseDTO;
